@@ -414,16 +414,16 @@ class PaymeApi {
 
 	public function payme_GetStatement() {
 
-		$query=db_get_array("SELECT paycom_time,
-									paycom_transaction_id,
-									amount,
-									order_id,
-									create_time,
-									perform_time,
-									cancel_time,
-									state,
-									reason,
-									receivers FROM ?:payme_transactions WHERE paycom_time_datetime >= ?s and  paycom_time_datetime <= ?s", 
+		$rows=db_get_array("SELECT t.paycom_time,
+									t.paycom_transaction_id,
+									t.amount,
+									t.order_id,
+									t.create_time,
+									t.perform_time,
+									t.cancel_time,
+									t.state,
+									t.reason,
+									t.receivers FROM ?:payme_transactions as t WHERE t.paycom_time_datetime >= ?s and  t.paycom_time_datetime <= ?s", 
 									$this->timestamp2datetime($this->inputArray['params']['from']),
 									$this->timestamp2datetime($this->inputArray['params']['to'])
 									);
