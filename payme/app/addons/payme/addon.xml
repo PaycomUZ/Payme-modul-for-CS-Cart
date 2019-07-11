@@ -4,7 +4,7 @@
 	<id>payme</id>
 	<name>Метод оплаты Payme </name>
 	<description>Payme Business даёт возможность принимать платежи на вашем веб-сайте или через приложение, по e-mail или SMS, или же в самой торговой точке по системе бесконтактных платежей и QR-коду.</description>
-	<version>1.0.0.1</version>
+	<version>1.0.0.2</version>
 	<status>active</status>
 	<auto_install>MULTIVENDOR,ULTIMATE</auto_install>
 	<priority>100500</priority>
