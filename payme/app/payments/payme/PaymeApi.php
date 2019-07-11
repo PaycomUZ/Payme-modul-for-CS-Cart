@@ -379,10 +379,10 @@ class PaymeApi {
 		if($arrayOfArray)
 		$this->lastTransaction=$arrayOfArray[0]; 
 	}
-
+	//FIX
 	protected function getLastTransactionForOrder($v_order_id ) {
 	
-		$arrayOfArray=db_get_array("SELECT * FROM ?:payme_transactions WHERE order_id = ?s", $v_order_id);
+		$arrayOfArray=db_get_array("SELECT * FROM ?:payme_transactions WHERE state in (1,2) and order_id = ?s", $v_order_id);
 
 		if($arrayOfArray)
 		$this->lastTransaction=$arrayOfArray[0]; 
@@ -472,7 +472,7 @@ class PaymeApi {
 					"create_time"	=> $this->datetime2timestamp($this->lastTransaction['create_time']) *1000,
 					"perform_time"  => $this->datetime2timestamp($this->lastTransaction['perform_time'])*1000,
 					"cancel_time"   => $this->datetime2timestamp($this->lastTransaction['cancel_time']) *1000,
-					"transaction"	=>  $this->lastTransaction['cms_order_id'], //$this->order_id,
+					"transaction"	=>  $this->lastTransaction['transaction_id'], // FIX
 					"state"			=> (int)$this->lastTransaction['state'],
 					"reason"		=> (is_null($this->lastTransaction['reason'])?null:(int)$this->lastTransaction['reason'])
 				);
@@ -504,10 +504,10 @@ class PaymeApi {
 
 		return $responseArray;
 	}
-
+	// FIX
 	public function SaveOrder($amount,$orderId,$cmsOrderId,$paycomTime,$paycomTimeDatetime,$paycomTransactionId ) {
 
-		$transactionCnt=db_get_array("SELECT * FROM ?:payme_transactions WHERE cms_order_id = ?s and order_id = ?s and amount = ?s",
+		$transactionCnt=db_get_array("SELECT * FROM ?:payme_transactions WHERE state=1 and cms_order_id = ?s and order_id = ?s and amount = ?s",
 			(is_null($cmsOrderId)? 0:$cmsOrderId),
 			(is_null($orderId)?	0:$orderId),
 			$amount);

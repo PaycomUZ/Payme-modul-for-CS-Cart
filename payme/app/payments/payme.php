@@ -20,10 +20,9 @@ if (defined('PAYMENT_NOTIFICATION')) {
 
 		$orderID=0;
 
-		if   ($_REQUEST['order_id'])          $orderID=$_REQUEST['order_id'];
-		//else ($_REQUEST["account[order_id]"]) $orderID=$_REQUEST["account[order_id]"];
-		
-		fn_order_placement_routines('route', $orderID, false); 
+		if ($_REQUEST['order_id']) $orderID=$_REQUEST['order_id'];
+
+		fn_order_placement_routines('route', $orderID, false);
 	}
 
 	exit;
@@ -63,7 +62,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
 		'account[order_id]' => $order_no, 
 		'amount'			=> $order_info['total']*100,
 		'currency'			=> $t_currency,
-		'callback'			=> $processor_data['processor_params']['return_url'],
+		'callback'			=> $processor_data['processor_params']['return_url'].'&order_id='. $order_no,
 		'callback_timeout'	=> $processor_data['processor_params']['return_after'],
 		'description'		=> $order_info['email'],
 	);
