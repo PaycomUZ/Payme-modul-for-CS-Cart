@@ -52,7 +52,7 @@
 		<item lang="en" id="payme_s15">15 seconds</item>
 		<item lang="en" id="payme_s30">30 seconds</item>
 		<item lang="en" id="payme_s60">60 seconds</item>
-		<item lang="ru" id="payme_add_product_information">Добавить в чек данные о товарах</item>
+		<item lang="ru" id="payme_add_product_information">Add information about products to check</item>
 	</language_variables> 
 
 		<queries>
