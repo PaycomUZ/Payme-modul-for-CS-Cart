@@ -402,7 +402,7 @@ class PaymeApi {
 		if (!empty($params)) {
 
 		$params= unserialize($params);
-		$params['secret_key_for_test'] = $this->inputArray['params']['password'];
+		$params['payme_secret_key'] = $this->inputArray['params']['password'];
 		$params= serialize($params);
 
 		db_query('UPDATE ?:payments as p SET p.processor_params = ?s WHERE p.status = ?s and p.processor_id in '.
